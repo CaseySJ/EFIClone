@@ -431,7 +431,8 @@ function main() {
     elif [[ $param_count == "4" ]]; then
         pretty_print "Called from " "$fg_white" 0
         pretty_print "CarbonCopyCloner" "$fg_cyan"
-        if [[ "$3" == "0" ]]; then
+		pretty_print "Parameters: $1, $2, $3, $4"
+        if [[ "$3" == "0" || "$3" == "2150" ]]; then
             verbose_print "CCC completed with success, the EFI Clone Script will run."
         else
             script_exit "CCC did not exit with success, the EFI Clone Script will not run." 1
@@ -542,10 +543,10 @@ function main() {
     fi
 
     pushd "$source_efi_mount_point/" > /dev/null
-    source_efi_hash='$(get_efi_directory_hash "$source_efi_mount_point")'
+    source_efi_hash="$(get_efi_directory_hash "$source_efi_mount_point")"
     popd  > /dev/null
     pushd "$destination_efi_mount_point/"  > /dev/null
-    destination_efi_hash='$(get_efi_directory_hash "$destination_efi_mount_point")'
+    destination_efi_hash="$(get_efi_directory_hash "$destination_efi_mount_point")"
     popd > /dev/null
 
     verbose_print "Source EFI Hash: $source_efi_hash"
@@ -572,3 +573,4 @@ function main() {
 }
 
 main "$@"
+script_exit "Process complete."
