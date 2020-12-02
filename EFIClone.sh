@@ -9,7 +9,7 @@ if [[ ${DEBUG-} =~ ^1|yes|true$ ]]; then
     set -o xtrace       # Trace the execution of the script (debug)
 fi
 
-TEST_SWITCH="N"
+TEST_SWITCH="Y"
 LOG_FILE_PATH="/Users/Shared/EFIClone.log"
 
 set -o errexit          # Exit on most errors (see the manual)
